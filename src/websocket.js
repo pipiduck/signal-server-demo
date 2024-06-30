@@ -29,10 +29,20 @@ function onMessage(message) {
   const recieveWs = socketPool[payload.to];
   
   switch (cmd) {
-    // 发起对方的webrtc连接
-    case SOCKET_CMD_SEND.calling:
+    // 转发呼叫信息
+    case SOCKET_CMD_RECIVE.calling:
       recieveWs?.send(JSON.stringify({
         cmd: SOCKET_CMD_SEND.calling,
+        payload: {
+          from: payload.from,
+          to: payload.to
+        }
+      }));
+      break;
+    // 转发呼叫应答信息
+    case SOCKET_CMD_RECIVE.acceptCall:
+      recieveWs?.send(JSON.stringify({
+        cmd: SOCKET_CMD_SEND.acceptCall,
         payload: {
           from: payload.from,
           to: payload.to
@@ -66,6 +76,8 @@ function onMessage(message) {
       recieveWs?.send(JSON.stringify({
         cmd: SOCKET_CMD_SEND.candidate,
         payload: {
+          from: payload.from,
+          to: payload.to,
           candidate: payload.candidate
         }
       }));
