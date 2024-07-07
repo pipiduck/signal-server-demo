@@ -14,5 +14,5 @@ const server = http.createServer(app.callback());
 initWebSocket(server);
 
 server.listen(3322, () => {
-  console.log("server is running on http://localhost:3322");
+  console.log("signal server is running on http://localhost:3322");
 });
