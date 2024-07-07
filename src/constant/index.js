@@ -5,6 +5,7 @@ const SOCKET_CMD_RECIVE = {
   connected: "client-websocket-connected",
   acceptCall: "accept-call",
   calling: "calling",
+  hangUp: 'hang-up'
 };
 
 const SOCKET_CMD_SEND = {
@@ -13,6 +14,7 @@ const SOCKET_CMD_SEND = {
   offer: "offer",
   answer: "answer",
   candidate: "candidate",
+  hangUp: 'hang-up'
 };
 
 module.exports = {
