@@ -12,10 +12,9 @@ const initWebSocket = (server) => {
   // 与客户端每次建立websocket连接都会触发connection事件
   // wss.clients.size 当前连接数
   wss.on("connection", (ws, req) => {
-    // 提取url中的user参数
+    // 提取url中的user参数，作为ws连接的key
     const parsedUrl = url.parse(req.url, true);
     const userId = parsedUrl.query["user"];
-
     socketPool[userId] = ws;
 
     ws.on("message", onMessage);
